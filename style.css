@@ -12,6 +12,11 @@ body{
     overflow-y:hidden;
 }
 
+button:focus,
+input:focus{
+    outline: none;
+}
+
 #pageOne{
     height:100%;
     width:100%;
@@ -63,11 +68,6 @@ body{
     color:white;
     height:30px;
     border-radius:25px;
-}
-
-button:focus,
-input:focus{
-    outline: none;
 }
 
 #pageTwo{
