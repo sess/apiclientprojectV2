@@ -1,26 +1,23 @@
 /* global $ */
 
-function play(){
-    var audio = document.getElementById("audio");
-    audio.play();
-}
+//let url = "https://api.nasa.gov/planetary/apod?api_key=NeRV1tJp7ld5IHrxZLZbIkky5Eyt5ogvkTRhN4lv";
+
+//let url = "https://images-api.nasa.gov/search?q={q}";
 
 let userInput;
 let i;
 
 $(".enter").click(function(){
-
-userInput = $("#inputOne").val();
-
-$.ajax({
-    url: "https://official-joke-api.appspot.com/jokes/ten",
-    method: "GET",
-    success: function(response){
-    for(i =0; i < response.length; i++){
-        if(userInput === response[i].type)
-        $("#parent").append("<br><span>" + response[i].setup + "</span><br>"  + "<span>" + response[i].punchline + "</span><br>");
+    
+    userInput = $("#inputOne").val();
+    
+    url = "https://images-api.nasa.gov/search?q=" + userInput;
+    
+    $.ajax({
+        url: url,
+        method: "GET",
+        success: function(response){
+            console.log(url);
         }
-    }
-});
-
+    });
 });
