@@ -42,7 +42,7 @@ $("#inputOne").click(function(){
                 url: url,
                 method: "GET",
                 success: function(response){
-                    console.log(url);
+                    //console.log(url);
                     $("#boldName").text(response.collection.items[0].data[0].title);
                     $("#imgResult").attr("src",response.collection.items[0].links[0].href);
                     $("#text").text(response.collection.items[0].data[0].description);
@@ -80,7 +80,7 @@ $(".enter").click(function(){
         url: url,
         method: "GET",
         success: function(response){
-            console.log(url);
+            //console.log(url);
             $("#boldName").text(response.collection.items[0].data[0].title);
             $("#imgResult").attr("src",response.collection.items[0].links[0].href);
             $("#text").text(response.collection.items[0].data[0].description);
@@ -110,7 +110,7 @@ $(".enter").click(function(){
 });
 
 $("#back").click(function(){
-    console.log("previous");
+    //console.log("previous");
     userInput = $("#inputOne").val();
     //url = "https://images-api.nasa.gov/search?q=" + userInput;
     if(i === 0){
@@ -124,9 +124,8 @@ $("#back").click(function(){
                 //progress();
                 i = i - 1;
                 url = "https://images-api.nasa.gov/search?page=" + i +"&q=" + userInput; 
-                console.log(i);
-                
-                console.log(url);
+                //console.log(i);
+                //console.log(url);
                 $("#boldName").text(response.collection.items[0].data[0].title);
                 $("#imgResult").attr("src",response.collection.items[0].links[0].href);
                 $("#text").text(response.collection.items[0].data[0].description);
@@ -136,7 +135,7 @@ $("#back").click(function(){
 });
 
 $("#next").click(function(){
-    console.log("next");
+    //console.log("next");
     userInput = $("#inputOne").val();
      $.ajax({
         url: url,
@@ -144,8 +143,8 @@ $("#next").click(function(){
         success: function(response){
             i = i + 1;
             url = "https://images-api.nasa.gov/search?page=" + i +"&q=" + userInput; 
-            console.log(i);
-            console.log(url);
+            //console.log(i);
+            //console.log(url);
             $("#boldName").text(response.collection.items[0].data[0].title);
             $("#imgResult").attr("src",response.collection.items[0].links[0].href);
             $("#text").html(response.collection.items[0].data[0].description);
