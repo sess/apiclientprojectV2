@@ -110,7 +110,8 @@ input:focus{
     width:100%;
 }
 
-#imgResult{
+#imgResult,
+.imgResult{
     width:450px;
     height:300px;
     margin:20px;
