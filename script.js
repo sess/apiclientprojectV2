@@ -1,6 +1,4 @@
 /* global $ */
-//let url = "https://api.nasa.gov/planetary/apod?api_key=NeRV1tJp7ld5IHrxZLZbIkky5Eyt5ogvkTRhN4lv";
-//let url = "https://images-api.nasa.gov/search?q={q}";
 let apodUrl = "https://api.nasa.gov/planetary/apod?api_key=NeRV1tJp7ld5IHrxZLZbIkky5Eyt5ogvkTRhN4lv";
 let url = "https://images-api.nasa.gov/search?q={q}";
 let userInput;
@@ -9,147 +7,72 @@ let arrayLength;
 let imgArray= [];
 let descArray= [];
 let titleArray= [];
+let keywords;
 
-/*function progress(){
-    $("#back").click(function(){
-        i = i - 1;
-        
-        if(i === arrayLength - arrayLength){
-            i = i;
-        }
-    });
-    
-    console.log(arrayLength);
-    
-    $("#next").click(function(){
-        i = i + 1;
-        
-        if(i === arrayLength){
-            i = i;
-        }
-    });
-}*/
-
-$("#inputOne").click(function(){
-    $(document).keydown(function(keyPressed) {
-       if (keyPressed.keyCode == 13 && ($("#inputOne").val() != "")) {
-            userInput = $("#inputOne").val();
-            $('html,body').animate({scrollTop: $("#pageTwo").offset().top},'slow');
-            $("#arrowBack").show();
-            $("#progressArrows").show();
-            url = "https://images-api.nasa.gov/search?q=" + userInput;
-            $.ajax({
-                url: url,
-                method: "GET",
-                success: function(response){
-                    //console.log(url);
-                    $("#boldName").text(response.collection.items[0].data[0].title);
-                    $("#imgResult").attr("src",response.collection.items[0].links[0].href);
-                    $("#text").text(response.collection.items[0].data[0].description);
-                }
-            });
-        }
-    });
-});
+$("#pageOne").show();
+$("#resultsPage").hide();
 
 $("#arrowBack").click(function(){
-    $('html,body').animate({scrollTop: $("#pageOne").offset().top},'slow');
+    $("#pageOne").show();
+    $("#resultsPage").hide();
     $("#arrowBack").hide();
     $("#progressArrows").hide();
-    //i = 0;
     arrayLength;
     imgArray= [];
     descArray= [];
     titleArray= [];
-    $("#inputOne").val("");
+    $(".inputOne").val("");
 });
-
-/*$("#apodBttn").click(function(){
-    $('html,body').animate({scrollTop: $("#pageTwo").offset().top},'slow');
-    $("#arrowBack").show();
-
-});*/
 
 $(".enter").click(function(){
-    userInput = $("#inputOne").val();
+    userInput = $(".inputOne").val();
+    //keywords = userInput.split(" ");
+    //console.log(keywords);
+    $("#keywordText").text("Showing results for: " + userInput);
+    $("#pageOne").hide();
+    $("#resultsPage").show();
     url = "https://images-api.nasa.gov/search?q=" + userInput;
-    $('html,body').animate({scrollTop: $("#pageTwo").offset().top},'slow');
-    $("#arrowBack").show();
-    $("#progressArrows").show();
-    $.ajax({
-        url: url,
-        method: "GET",
-        success: function(response){
-            //console.log(url);
-            $("#boldName").text(response.collection.items[0].data[0].title);
-            $("#imgResult").attr("src",response.collection.items[0].links[0].href);
-            $("#text").text(response.collection.items[0].data[0].description);
-            
-            /*response.collection.items.forEach(function(element){
-                imgArray.push(response.collection.items[element].links[0].href);
-            });*/
-            
-            /*for(let x = 0; x < response.collection.items[i].length; x++){
-                
-            }*/
-            
-            /*for(let x = 0; x < response.collection.items[x].length; x++){
-                descArray.push(response.collection.items[x].data[0].description);
-            }
-            
-            for(let x = 0; x < response.collection.items[x].length; x++){
-                titleArray.push(response.collection.items[x].data[0].title);
-            }
-            
-            console.log(imgArray);
-            console.log(descArray);
-            console.log(titleArray);
-            */
-        }
-    });
-});
-
-$("#back").click(function(){
-    //console.log("previous");
-    userInput = $("#inputOne").val();
-    //url = "https://images-api.nasa.gov/search?q=" + userInput;
-    if(i === 0){
-        alert("There aren't any more entries");
-    }else if(i !== 0){
-         $.ajax({
+    /*for(var i; i < keywords.length;i++){
+        url = "https://images-api.nasa.gov/search?q=" + keywords[i];
+        console.log(url);*/
+        console.log(url);
+        $.ajax({
             url: url,
             method: "GET",
             success: function(response){
-                //arrayLength = response.collection.items.length;
-                //progress();
-                i = i - 1;
-                url = "https://images-api.nasa.gov/search?page=" + i +"&q=" + userInput; 
-                //console.log(i);
-                //console.log(url);
-                $("#boldName").text(response.collection.items[0].data[0].title);
-                $("#imgResult").attr("src",response.collection.items[0].links[0].href);
-                $("#text").text(response.collection.items[0].data[0].description);
+               //$("#apiResults").html("<div class=\"resultBox\"><a target=\"_blank\" href=\"" + response.collection.items[0].links[0].href  + "\"><img class=\"resultImg\" src=\"" + response.collection.items[0].links[0].href + "\"></a><br><p class=\"resultTitle\">" + response.collection.items[0].data[0].title +"</p><br><p class=\"resultDesc\">" + response.collection.items[0].data[0].description + "</p></div>");
+
+                /*response.collection.items.forEach(function(element){
+                    $("#apiResults").html("<div class=\"resultBox\"><a target=\"_blank\" href=\"" + response.collection.items[element].links[0].href  + "\"><img class=\"resultImg\" src=\"" + response.collection.items[element].links[0].href + "\"></a><br><p class=\"resultTitle\">" + response.collection.items[element].data[0].title +"</p><br><p class=\"resultDesc\">" + response.collection.items[element].data[0].description + "</p></div>");
+                }); */
+                
+                for(var q = 0; q < response.collection.items.length; q = q + 1){
+                    $("#apiResults").append("<div class=\"resultBox\"><a target=\"_blank\" href=\"" + response.collection.items[q].links[0].href  + "\"><img class=\"resultImg\" src=\"" + response.collection.items[q].links[0].href + "\"></a><br><p class=\"resultTitle\">" + response.collection.items[q].data[0].title +"</p><br><p class=\"resultDesc\">" + response.collection.items[q].data[0].description + "</p></div>");
+                }
             }
         });
-    }
+    //}
+    $(".inputOne").val("");
 });
 
-$("#next").click(function(){
-    //console.log("next");
-    userInput = $("#inputOne").val();
-     $.ajax({
-        url: url,
-        method: "GET",
-        success: function(response){
-            i = i + 1;
-            url = "https://images-api.nasa.gov/search?page=" + i +"&q=" + userInput; 
-            //console.log(i);
-            //console.log(url);
-            $("#boldName").text(response.collection.items[0].data[0].title);
-            $("#imgResult").attr("src",response.collection.items[0].links[0].href);
-            $("#text").html(response.collection.items[0].data[0].description);
-        }
-    });
+$(".enterBttnTwo").click(function(){
+    $("#apiResults").text("");
+    userInput = $(".inputTwo").val();
+    $("#keywordText").text("Showing results for: " + userInput);
+    $("#pageOne").hide();
+    $("#resultsPage").show();
+    url = "https://images-api.nasa.gov/search?q=" + userInput;
+        console.log(url);
+        $.ajax({
+            url: url,
+            method: "GET",
+            success: function(response){
+                for(var q = 0; q < response.collection.items.length; q = q + 1){
+                    $("#apiResults").append("<div class=\"resultBox\"><a target=\"_blank\" href=\"" + response.collection.items[q].links[0].href  + "\"><img class=\"resultImg\" src=\"" + response.collection.items[q].links[0].href + "\"></a><br><p class=\"resultTitle\">" + response.collection.items[q].data[0].title +"</p><br><p class=\"resultDesc\">" + response.collection.items[q].data[0].description + "</p></div>");
+                }
+            }
+        });
+    $(".inputTwo").val("");
 });
 
 $.ajax({
@@ -158,14 +81,22 @@ $.ajax({
         success: function(response){
             if(response.media_type === "video"){
                 $("#imgResultTwo").hide();
+                $("#imgResultOne").show();
             }
             
             if(response.media_type === "image"){
-                $("#imgResultOne").text("<img id=\"imgResult\" src=\"\">");
+                $("#imgResultTwo").show();
+                $("#imgResultOne").hide()
             }
             
             $("#boldName").text(response.title);
             $(".imgResult").attr("src",response.url);
             $("#text").html(response.explanation);
         }
+});
+
+$("#returnLogo").click(function(){
+    $("#pageOne").show();
+    $("#resultsPage").hide();
+    $("#apiResults").text("");
 });

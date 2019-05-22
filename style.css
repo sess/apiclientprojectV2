@@ -6,10 +6,10 @@ body{
     height:100%;
     margin:0;
     padding:0;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
     background-color:black;
     color:white;
-    overflow-y:hidden;
+    /*overflow-y:hidden;*/
 }
 
 button:focus,
@@ -45,7 +45,9 @@ input:focus{
 }
 
 .enter,
-#apodBttn{
+#apodBttn,
+.enterBttnTwo,
+#apodBttnTwo{
     border-radius:6px;
     background-color:white;
     border:white 2px solid;
@@ -59,7 +61,8 @@ input:focus{
     justify-content:center;
 }
 
-#inputOne{
+.inputOne,
+.inputTwo{
     font-family: 'Noto Sans', sans-serif;
     text-indent:15px;
     width:50%;
@@ -75,29 +78,6 @@ input:focus{
     width:100%;
 }
 
-#arrowBack{
-    position: absolute;
-    top:0%;
-    left:0%;
-    height:40px;
-    width:3%;
-    text-align:center;
-    cursor:pointer;
-    background-color:white;
-    display:none;
-    flex-wrap:wrap;
-    flex-direction:row;
-    opacity: 0.8;
-}
-
-#arrow{
-    width:97%;
-    height:35px;
-    width:35px;
-    color:black;
-    padding:1px;
-}
-
 #name{
     display:flex;
     justify-content:center;
@@ -111,7 +91,8 @@ input:focus{
 }
 
 #imgResult,
-.imgResult{
+.imgResult,
+.apodImgResult{
     width:450px;
     height:300px;
     margin:20px;
@@ -125,29 +106,105 @@ input:focus{
     padding:10px;
 }
 
-#boldName{
+#boldName,
+#apodTitle{
     text-decoration: underline;
 }
 
-#progressArrows{
-    position: absolute;
-    bottom:0%;
-    right:0%;
-    opacity:0.5;
-    text-align:center;
-    cursor:pointer;
-    background-color:white;
-    border:2px solid white;
-    border-radius:10px;
-    flex-wrap:wrap;
-    flex-direction:row;
-    display:none;
+#apodDisplay{
+    display:flex;
+    width:100%;
 }
 
-.arrows{
-    cursor:pointer;
-    color:black;
-    padding:1px;
+#apodColumnOne{
     float:left;
-    margin:5px;
+    padding:100px;
+    text-align:center;
+}
+
+#apodColumnTwo{
+    float:left;
+    padding:100px;
+}
+
+#apodText{
+    text-align:center;
+    display: flex;
+    justify-content:center;
+}
+
+#resultsPage{
+    display:flex;
+    width:100%;
+    height:100%;
+    flex-wrap:wrap;
+}
+
+#whitespace{
+    width:100%;
+    margin:0px;
+    background-color:black;
+    height:11%;
+}
+
+#resultsHeading{
+    width:100%;
+    background-color:black;
+    height:11%;
+    position:fixed;
+}
+
+#searchBoxTwo{
+    display: flex;
+    justify-content:flex-start;
+}
+
+.enterBttnTwo,
+#apodBttnTwo{
+    margin:0;
+    margin-left:2px;
+    margin-top:3px;
+}
+
+#inputOne{
+    float:left;
+}
+
+#returnLogo{
+    height:40px;
+    width:47px;
+    margin:0;
+    float:left;
+    cursor: pointer;
+}
+
+#apiResults{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin:0;
+}
+
+.resultBox{
+    border:white 1px solid;
+    height:250px;
+    width:250px;
+    margin:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+    overflow:auto;
+}
+
+.resultImg{
+    width:100%;
+    height:50%;
+}
+
+.resultTitle{
+    text-align: center;
+    margin:0;
+}
+
+.resultDesc{
+    text-align:center;
 }
