@@ -94,9 +94,3 @@ $.ajax({
             $("#text").html(response.explanation);
         }
 });
-
-$("#returnLogo").click(function(){
-    $("#pageOne").show();
-    $("#resultsPage").hide();
-    $("#apiResults").text("");
-});
