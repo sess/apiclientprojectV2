@@ -2,27 +2,10 @@
 let apodUrl = "https://api.nasa.gov/planetary/apod?api_key=NeRV1tJp7ld5IHrxZLZbIkky5Eyt5ogvkTRhN4lv";
 let url = "https://images-api.nasa.gov/search?q={q}";
 let userInput;
-let i = 1;
-let arrayLength;
-let imgArray= [];
-let descArray= [];
-let titleArray= [];
-let keywords;
+//let keywords;
 
 $("#pageOne").show();
 $("#resultsPage").hide();
-
-$("#arrowBack").click(function(){
-    $("#pageOne").show();
-    $("#resultsPage").hide();
-    $("#arrowBack").hide();
-    $("#progressArrows").hide();
-    arrayLength;
-    imgArray= [];
-    descArray= [];
-    titleArray= [];
-    $(".inputOne").val("");
-});
 
 $(".enter").click(function(){
     userInput = $(".inputOne").val();
@@ -86,7 +69,7 @@ $.ajax({
             
             if(response.media_type === "image"){
                 $("#imgResultTwo").show();
-                $("#imgResultOne").hide()
+                $("#imgResultOne").hide();
             }
             
             $("#boldName").text(response.title);
